@@ -38,7 +38,15 @@
                         <ImageView fx:id="imgSearch" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="imgSearch" />
                      </graphic>
             </Button>
-            <Button fx:id="btnRemove" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" styleClass="btnBar" text="-" />
+            <Button fx:id="btnRemove" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" styleClass="btnBar" text="-">
+                     <contextMenu>
+                        <ContextMenu>
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                              <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                          </items>
+                        </ContextMenu>
+                     </contextMenu></Button>
           </children>
           <padding>
             <Insets left="10.0" />
@@ -55,8 +63,8 @@
               <contextMenu>
                 <ContextMenu>
                   <items>
-                    <MenuItem fx:id="miAddMovie" mnemonicParsing="false" text="Movie" />
-                    <MenuItem fx:id="miAddProfessional" mnemonicParsing="false" text="Professional" />
+                    <MenuItem fx:id="miAddMovie" mnemonicParsing="false" text="Add movie" />
+                    <MenuItem fx:id="miAddProfessional" mnemonicParsing="false" text="Add professional" />
                   </items>
                 </ContextMenu>
               </contextMenu>
@@ -65,7 +73,7 @@
               <contextMenu>
                 <ContextMenu>
                   <items>
-                    <MenuItem fx:id="miAllMovie" mnemonicParsing="false" text="Movie" />
+                    <MenuItem fx:id="miAllMovie" mnemonicParsing="false" text="All movies" />
                     <MenuItem fx:id="miAllProfessional" mnemonicParsing="false" text="Professional" />
                   </items>
                 </ContextMenu>

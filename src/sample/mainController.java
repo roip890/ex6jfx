@@ -19,6 +19,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class mainController {
     private TCPClient client;
@@ -26,7 +27,6 @@ public class mainController {
     public TCPClient getClient() {
         return client;
     }
-
 
 
     /*
@@ -53,27 +53,6 @@ public class mainController {
     ImageView imgLogo;
 
     @FXML
-    Button btnAdd;
-
-    @FXML
-    MenuItem miAddProfessional;
-
-    @FXML
-    MenuItem miAddMovie;
-
-    @FXML
-    MenuItem miAllProfessional;
-
-    @FXML
-    MenuItem miAllMovie;
-
-    @FXML
-    ListView lstItems;
-
-    @FXML
-    Button btnSearch;
-
-    @FXML
     TextField mainTextField;
 
     @FXML
@@ -88,6 +67,35 @@ public class mainController {
     @FXML
     MenuItem searchProfessionalsByMovie;
 
+    @FXML
+    Button btnAdd;
+
+    @FXML
+    Button btnSearch;
+
+    @FXML
+    Button btnRemove;
+
+    @FXML
+    ListView lstItems;
+
+    @FXML
+    MenuItem miRemoveProfessional;
+
+    @FXML
+    MenuItem miRemoveMovie;
+
+    @FXML
+    MenuItem miAddProfessional;
+
+    @FXML
+    MenuItem miAddMovie;
+
+    @FXML
+    MenuItem miAllProfessional;
+
+    @FXML
+    MenuItem miAllMovie;
 
     @FXML
     void initialize() {
@@ -114,7 +122,7 @@ public class mainController {
 
 
         String url = "http://ia.media-imdb.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg";
-        lstItems.getItems().add("xyz Inception 148 2010 8.8 SciFi,Action " + url +" This is the description\n" +
+        lstItems.getItems().add("xyz Inception 148 2010 8.8 SciFi,Action " + url + " This is the description\n" +
                 "1 Ellen Page Ariadne Super-Star\n" +
                 "1 Leonardo Dicaprio 42");
 
@@ -127,32 +135,92 @@ public class mainController {
         });
 
 
-
 // handle exception
+
+        imgLogo.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                login con = new login();
+                con.show();
+
+            }
+        });
 
         btnSearch.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                String answer;
-                String id = mainTextField.getText();
                 StringBuilder commandToSend = new StringBuilder("");
                 String searchOpt = btnMnuSearch.getText();
                 if (searchOpt.equals(searchMoviesByProfessional.getText())) {
                     commandToSend.append("9 ");
-                    commandToSend.append(id);
-                    answer = TCPClient.getInstance().commandToServer(commandToSend.toString());
                     ArrayList<String> arr = new ArrayList<String>();
-                    
-                    showProfessionals(new ArrayList<String>().addAll(answer.split("~~-/SEPARATOR/-~~\n")));
                 } else if (searchOpt.equals(searchMovieById.getText())) {
                     commandToSend.append("7 ");
-                    commandToSend.append(id);
                 } else if (searchOpt.equals(searchProfessionalsByMovie.getText())) {
                     commandToSend.append("6 ");
-                    commandToSend.append(id);
                 }
-                if (answer.equals("Success")) {
-                    succesMsg msg = new succesMsg("Success", "");
+                String id = mainTextField.getText();
+                commandToSend.append(id);
+                try {
+                    String answer = TCPClient.getInstance().commandToServer(commandToSend.toString());
+                    ArrayList<String> list = new ArrayList<String>(Arrays.asList(answer.split("~~-/SEPARATOR/-~~")));
+                    if (searchOpt.equals(searchMoviesByProfessional.getText())) {
+                        showProfessionals(list);
+                    } else if (searchOpt.equals(searchMovieById.getText())) {
+                        showProfessionals(list);
+                    } else if (searchOpt.equals(searchProfessionalsByMovie.getText())) {
+                        showProfessionals(list);
+                    }
+                } catch (Exception e) {
+                    errorMsg msg = new errorMsg("Error!", "Can't communicate server.\nPlease connect to server");
+                    msg.show();
+                }
+            }
+        });
+
+        miRemoveMovie.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    StringBuilder commandToSend = new StringBuilder("");
+                    commandToSend.append("11 ");
+                    String id = mainTextField.getText();
+                    commandToSend.append(id);
+                    String answer = TCPClient.getInstance().commandToServer(commandToSend.toString());
+                    if (answer.contains("Success")) {
+                        succesMsg msg = new succesMsg("Success!", "Movie removed");
+                        msg.show();
+                    } else {
+                        errorMsg msg = new errorMsg("Error!", "Can't remove movie");
+                        msg.show();
+                    }
+                } catch (Exception e) {
+                    errorMsg msg = new errorMsg("Error!", "Can't communicate server.\nPlease connect to server");
+                    msg.show();
+                }
+            }
+        });
+
+        miRemoveProfessional.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    StringBuilder commandToSend = new StringBuilder("");
+                    commandToSend.append("10 ");
+                    String id = mainTextField.getText();
+                    commandToSend.append(id);
+                    String answer = TCPClient.getInstance().commandToServer(commandToSend.toString());
+                    if (answer.contains("Success")) {
+                        succesMsg msg = new succesMsg("Success!", "Professional removed");
+                        msg.show();
+                    } else {
+                        errorMsg msg = new errorMsg("Error!", "Can't remove professional");
+                        msg.show();
+                        mainTextField.setBackground();
+                    }
+                } catch (Exception e) {
+                    errorMsg msg = new errorMsg("Error!", "Can't communicate server.\nPlease connect to server");
+                    msg.show();
                 }
             }
         });
@@ -177,8 +245,9 @@ public class mainController {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                    TCPClient.getInstance().commandToServer("13");
-                    addAllMovToView();
+                    String answer = TCPClient.getInstance().commandToServer("13");
+                    ArrayList<String> moviesList = new ArrayList<String>(Arrays.asList(answer.split("~~-/SEPARATOR/-~~")));
+                    showMovies(moviesList);
                 } catch (Exception e) {
                     errorMsg err = new errorMsg("Error!", "You are not connected.\nPlease connect to the server!");
                     err.show();
@@ -189,19 +258,18 @@ public class mainController {
         miAllProfessional.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String lst = TCPClient.getInstance().commandToServer("14");
-                addAllProToView(lst);
+                try {
+                    String answer = TCPClient.getInstance().commandToServer("14");
+                    ArrayList<String> professionalsList = new ArrayList<String>(Arrays.asList(answer.split("~~-/SEPARATOR/-~~")));
+                    showProfessionals(professionalsList);
+                } catch (Exception e) {
+                errorMsg err = new errorMsg("Error!", "You are not connected.\nPlease connect to the server!");
+                err.show();
+            }
             }
         });
 
-        imgLogo.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                login con = new login();
-                con.show();
 
-            }
-        });
 
         Platform.runLater(new Runnable() {
             @Override
@@ -209,7 +277,6 @@ public class mainController {
                 btnAdd.requestFocus();
             }
         });
-
 
 
     }
@@ -236,43 +303,5 @@ public class mainController {
             }
         });
         lstItems.refresh();
-    }
-
-
-
-
-    //Add all professionals retrieved from server to listView
-    protected void addAllProToView(String lst) {
-        lstItems.getItems().clear();
-        String[] cur = null;
-        try {
-            if(!lst.isEmpty()) {
-                cur = lst.split("~~-/SEPARATOR/-~~\n");
-                lstItems.getItems().addAll(cur);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    //Add all movies retrieved from server to listView
-    protected void addAllMovToView(){
-        /*
-        lstItems.getItems().clear();
-        String result = null, cur = null;
-        try {
-            while (TCPClient.getInstance(null,0).getStdin().ready()) {
-                cur = TCPClient.getInstance(null,0).getStdin().readLine();
-                if(cur.isEmpty()){
-                    lstItems.getItems().add(result);
-                    result = null;
-                    continue;
-                }
-                result += cur;
-            }
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        */
     }
 }

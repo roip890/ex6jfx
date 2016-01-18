@@ -141,7 +141,9 @@ public class mainController {
                     commandToSend.append("9 ");
                     commandToSend.append(id);
                     answer = TCPClient.getInstance().commandToServer(commandToSend.toString());
-                    showProfessionals(new ArrayList<String>(answer.split(--~/SEPA)));
+                    ArrayList<String> arr = new ArrayList<String>();
+                    
+                    showProfessionals(new ArrayList<String>().addAll(answer.split("~~-/SEPARATOR/-~~\n")));
                 } else if (searchOpt.equals(searchMovieById.getText())) {
                     commandToSend.append("7 ");
                     commandToSend.append(id);

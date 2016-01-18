@@ -127,24 +127,28 @@ public class mainController {
         });
 
 
+
 // handle exception
 
         btnSearch.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-
+                String answer;
+                String id = mainTextField.getText();
                 StringBuilder commandToSend = new StringBuilder("");
                 String searchOpt = btnMnuSearch.getText();
                 if (searchOpt.equals(searchMoviesByProfessional.getText())) {
-                    commandToSend.append("5 ");
+                    commandToSend.append("9 ");
+                    commandToSend.append(id);
+                    answer = TCPClient.getInstance().commandToServer(commandToSend.toString());
+                    showProfessionals(new ArrayList<String>(answer.split(--~/SEPA)));
                 } else if (searchOpt.equals(searchMovieById.getText())) {
-                    commandToSend.append("6 ");
-                } else if (searchOpt.equals(searchProfessionalsByMovie.getText())) {
                     commandToSend.append("7 ");
+                    commandToSend.append(id);
+                } else if (searchOpt.equals(searchProfessionalsByMovie.getText())) {
+                    commandToSend.append("6 ");
+                    commandToSend.append(id);
                 }
-                String id = mainTextField.getText();
-                commandToSend.append(id);
-                String answer = TCPClient.getInstance().commandToServer(commandToSend.toString());
                 if (answer.equals("Success")) {
                     succesMsg msg = new succesMsg("Success", "");
                 }
@@ -208,8 +212,29 @@ public class mainController {
 
     }
 
+    public void showMovies(ArrayList<String> moviesList) {
+        lstItems.getItems().clear();
+        lstItems.getItems().addAll(moviesList);
+        lstItems.setCellFactory(new Callback<ListView, ListCell>() {
+            @Override
+            public ListCell call(ListView param) {
+                return new MovieListRow();
+            }
+        });
+        lstItems.refresh();
+    }
 
-
+    public void showProfessionals(ArrayList<String> professionalsList) {
+        lstItems.getItems().clear();
+        lstItems.getItems().addAll(professionalsList);
+        lstItems.setCellFactory(new Callback<ListView, ListCell>() {
+            @Override
+            public ListCell call(ListView param) {
+                return new ProfessionalListRow();
+            }
+        });
+        lstItems.refresh();
+    }
 
 
 

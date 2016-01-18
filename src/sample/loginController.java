@@ -41,9 +41,13 @@ public class loginController {
             public void handle(MouseEvent event) {
                 try{
                     TCPClient.getInstance(txtIP.getText(),Integer.parseInt(txtPort.getText()));
-                    ((Stage)(btnConnect.getScene().getWindow())).close();
+                    if (TCPClient.getInstance() != null) {
+                        ((Stage)(btnConnect.getScene().getWindow())).close();
+                    }
                 }catch (Exception e) {
                     e.printStackTrace();
+                    errorMsg msg = new errorMsg("Error", "Can't connect, invalid input.");
+                    msg.show();
                 }
             }
         });

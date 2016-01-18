@@ -44,12 +44,12 @@
         </HBox>
         <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="3">
           <children>
-            <TextField fx:id="txtAge" />
+            <TextField fx:id="txtAge" maxHeight="25.0" maxWidth="190.0" minHeight="25.0" minWidth="190.0" prefHeight="25.0" prefWidth="190.0" />
           </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
           <children>
-            <TextField fx:id="txtProName" />
+            <TextField fx:id="txtProName" maxHeight="25.0" maxWidth="190.0" minHeight="25.0" minWidth="190.0" prefHeight="25.0" prefWidth="190.0" />
           </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" minWidth="90.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
@@ -64,17 +64,17 @@
         </HBox>
         <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="1">
           <children>
-            <TextField fx:id="txtProID" />
+            <TextField fx:id="txtProID" maxHeight="25.0" maxWidth="190.0" minHeight="25.0" minWidth="190.0" prefHeight="25.0" prefWidth="190.0" />
           </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="0">
           <children>
-            <MenuButton fx:id="mbtnProfession" mnemonicParsing="false" text="Choose type">
+            <MenuButton fx:id="mbtnProfession" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="150.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Choose type">
               <items>
-                <MenuItem mnemonicParsing="false" text="Director" fx:id="proDirector" />
-                <MenuItem mnemonicParsing="false" text="Actor" fx:id="proActor" />
-                <MenuItem mnemonicParsing="false" text="Writer" fx:id="proWriter" />
-                <MenuItem mnemonicParsing="false" text="Producer" fx:id="proProducer" />
+                <MenuItem fx:id="proDirector" mnemonicParsing="false" text="Director" />
+                <MenuItem fx:id="proActor" mnemonicParsing="false" text="Actor" />
+                <MenuItem fx:id="proWriter" mnemonicParsing="false" text="Writer" />
+                <MenuItem fx:id="proProducer" mnemonicParsing="false" text="Producer" />
               </items>
             </MenuButton>
           </children>
@@ -91,20 +91,35 @@
         </HBox>
         <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="5">
           <children>
-            <TextField id="txtAge" fx:id="txtDescription" />
+            <TextField id="txtAge" fx:id="txtDescription" maxHeight="25.0" maxWidth="190.0" minHeight="25.0" minWidth="190.0" prefHeight="25.0" prefWidth="190.0" />
           </children>
         </HBox>
+            <HBox alignment="CENTER_LEFT" minWidth="90.0" GridPane.rowIndex="6">
+               <children>
+                  <Label styleClass="whiteFont" text="Movies:" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <children>
+                  <TextArea maxHeight="50.0" maxWidth="190.0" minHeight="50.0" minWidth="190.0" prefHeight="50.0" prefWidth="190.0" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+            </HBox>
       </children>
       <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="190.0" />
       </columnConstraints>
       <rowConstraints>
-        <RowConstraints minHeight="40.0" prefHeight="40.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="60.0" prefHeight="60.0" />
       </rowConstraints>
       <BorderPane.margin>
         <Insets left="10.0" right="10.0" />

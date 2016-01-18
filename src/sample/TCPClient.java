@@ -34,11 +34,16 @@ public class TCPClient {
             this.out = new PrintWriter(socket.getOutputStream(), true);
             this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.stdin = new BufferedReader(new InputStreamReader(System.in));
+            succesMsg msg = new succesMsg("Success", "You are connected");
+            msg.show();
             System.out.println("Connect:");
             System.out.println(this.port);
+            isConstruct = true;
         }catch (IOException e){
-            //System.out.println("Error establishing connection.");
             e.printStackTrace();
+            errorMsg msg = new errorMsg("Error", "Can't connect, please try again.");
+            msg.show();
+            isConstruct = false;
         }
 
     }
@@ -50,11 +55,18 @@ public class TCPClient {
 
     public static TCPClient getInstance(String ip,int port){
         if(!isConstruct){
-
+            //lock
             if(!isConstruct) {
-                instance = new TCPClient(ip, port);
-                isConstruct = true;
+                    instance = new TCPClient(ip, port);
+                    if (!isConstruct) {
+                        instance = null;
+                    }
+
             }
+            //unlock
+        } else {
+            errorMsg msg = new errorMsg("Error", "you are already connected!");
+            msg.show();
         }
         return instance;
 

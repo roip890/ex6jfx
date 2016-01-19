@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * Created by roi on 11/01/16.
  */
-public class succesMsg {
+public class succesMsg implements Runnable{
     String tag;
     String msg;
 
@@ -42,5 +42,10 @@ public class succesMsg {
 
 
 
+    }
+
+    @Override
+    public void run() {
+        show();
     }
 }

@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * Created by roi on 11/01/16.
  */
-public class errorMsg{
+public class errorMsg implements Runnable{
     String tag;
     String msg;
 
@@ -43,5 +43,10 @@ public class errorMsg{
 
 
 
+    }
+
+    @Override
+    public void run() {
+        show();
     }
 }

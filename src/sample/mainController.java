@@ -22,11 +22,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class mainController {
-    private TCPClient client;
-
-    public TCPClient getClient() {
-        return client;
-    }
 
     @FXML
     ImageView imgLogo;
@@ -137,14 +132,12 @@ public class mainController {
                 } else if (searchOpt.equals(searchProfessionalsByMovie.getText())) {
                     commandToSend.append("6 ");
                 } else {
-                    errorMsg msg = new errorMsg("Error!", "Please select an option.");
-                    msg.show();
+                    Platform.runLater(new errorMsg("Error!", "Please select an option."));
                     return;
                 }
                 String id = mainTextField.getText();
                 if (id.length() == 0) {
-                    errorMsg msg = new errorMsg("Error!", "Please insert an id.");
-                    msg.show();
+                    Platform.runLater(new errorMsg("Error!", "Please insert an id."));
                     return;
                 }
                 commandToSend.append(id);
@@ -159,13 +152,12 @@ public class mainController {
                         showProfessionals(list);
                     }
                 } catch (Exception e) {
-                    errorMsg msg = new errorMsg("Error!", "Can't communicate server.\nPlease connect to server");
-                    msg.show();
+                    Platform.runLater(new errorMsg("Error!", "Can't communicate server.\nPlease connect to server"));
                 }
             }
         });
 
-      /*  miRemoveMovie.setOnAction(new EventHandler<ActionEvent>() {
+        miRemoveMovie.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {
@@ -175,43 +167,44 @@ public class mainController {
                     commandToSend.append(id);
                     String answer = TCPClient.getInstance().commandToServer(commandToSend.toString());
                     if (answer.contains("Success")) {
-                        succesMsg msg = new succesMsg("Success!", "Movie removed");
-                        msg.show();
+                        Platform.runLater(new succesMsg("Success!", "Movie removed"));
                     } else {
-                        errorMsg msg = new errorMsg("Error!", "Can't remove movie");
-                        msg.show();
+                        Platform.runLater(new errorMsg("Error!", "Can't remove movie"));
                     }
                 } catch (Exception e) {
-                    errorMsg msg = new errorMsg("Error!", "Can't communicate server.\nPlease connect to server");
-                    msg.show();
+                    Platform.runLater(new errorMsg("Error!", "Can't communicate server.\nPlease connect to server"));
                 }
             }
         });
-*/
-/*        miRemoveProfessional.setOnAction(new EventHandler<ActionEvent>() {
+
+        miRemoveProfessional.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                try {
-                    StringBuilder commandToSend = new StringBuilder("");
-                    commandToSend.append("10 ");
-                    String id = mainTextField.getText();
-                    commandToSend.append(id);
-                    String answer = TCPClient.getInstance().commandToServer(commandToSend.toString());
-                    if (answer.contains("Success")) {
-                        succesMsg msg = new succesMsg("Success!", "Professional removed");
-                        msg.show();
-                    } else {
-                        errorMsg msg = new errorMsg("Error!", "Can't remove professional");
-                        msg.show();
-                        //mainTextField.setBackground();
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            StringBuilder commandToSend = new StringBuilder("");
+                            commandToSend.append("10 ");
+                            String id = mainTextField.getText();
+                            commandToSend.append(id);
+                            String answer = TCPClient.getInstance().commandToServer(commandToSend.toString());
+                            if (answer.contains("Success")) {
+                                Platform.runLater(new succesMsg("Success!", "Professional removed"));
+                            } else {
+                                Platform.runLater(new errorMsg("Error!", "Can't remove professional"));
+                                //mainTextField.setBackground();
+                            }
+                        } catch (Exception e) {
+                            Platform.runLater(new errorMsg("Error!", "Can't communicate server.\nPlease connect to server"));
+                        }
                     }
-                } catch (Exception e) {
-                    errorMsg msg = new errorMsg("Error!", "Can't communicate server.\nPlease connect to server");
-                    msg.show();
-                }
+                });
+                thread.start();
+
             }
         });
-*/
+
         miAddProfessional.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

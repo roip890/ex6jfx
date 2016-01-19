@@ -216,7 +216,7 @@ public class mainController {
                     } else {
                         errorMsg msg = new errorMsg("Error!", "Can't remove professional");
                         msg.show();
-                        mainTextField.setBackground();
+                        //mainTextField.setBackground();
                     }
                 } catch (Exception e) {
                     errorMsg msg = new errorMsg("Error!", "Can't communicate server.\nPlease connect to server");

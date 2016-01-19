@@ -222,11 +222,9 @@ public class mainController {
             }
         });
 
-
-
-        miAllMovie.setOnAction(new EventHandler<ActionEvent>() {
+        Thread allMovieThread = new Thread(new Runnable() {
             @Override
-            public void handle(ActionEvent event) {
+            public void run() {
                 try {
                     String answer = TCPClient.getInstance().commandToServer("13");
                     ArrayList<String> moviesList = new ArrayList<String>(Arrays.asList(answer.split("~~-/SEPARATOR/-~~")));
@@ -238,17 +236,31 @@ public class mainController {
             }
         });
 
-        miAllProfessional.setOnAction(new EventHandler<ActionEvent>() {
+        miAllMovie.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
+                allMovieThread.start();
+            }
+        });
+
+
+        Thread allProThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
                 try {
                     String answer = TCPClient.getInstance().commandToServer("14");
                     ArrayList<String> professionalsList = new ArrayList<String>(Arrays.asList(answer.split("~~-/SEPARATOR/-~~")));
                     showProfessionals(professionalsList);
                 } catch (Exception e) {
-                errorMsg err = new errorMsg("Error!", "You are not connected.\nPlease connect to the server!");
-                err.show();
+                    errorMsg err = new errorMsg("Error!", "You are not connected.\nPlease connect to the server!");
+                    err.show();
+                }
             }
+        });
+        miAllProfessional.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                allProThread.start();
             }
         });
 

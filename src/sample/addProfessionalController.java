@@ -64,29 +64,37 @@ public class addProfessionalController {
     @FXML
     public void initialize() {
 
+        Thread addProThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String answer = null;
+                try {
+                    String toSend = "2 " + profession + " " + txtProID.getText() + " " + txtAge.getText() + " " +
+                            txtDescription.getText() + " " + ((RadioButton) gender.getSelectedToggle()).getText() +
+                            " " + txtProName.getText();
+                    answer = TCPClient.getInstance().commandToServer(toSend);
+                    System.out.println(answer);
+                }catch (Exception e){
+                   e.printStackTrace();
+                }
+
+            }
+        });
+
         btnAddProfession.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                StringBuilder toSend = new StringBuilder();
-                toSend.append("2 ");
-                toSend.append(profession);
-                toSend.append(" ");
-                toSend.append(txtProID.getText());
-                toSend.append(" ");
-                toSend.append(txtAge.getText());
-                toSend.append(" ");
-                toSend.append(txtDescription.getText());
-                toSend.append(" ");
-                toSend.append(((RadioButton)gender.getSelectedToggle()).getText());
-                toSend.append(" ");
-                toSend.append(txtProName.getText());
-                TCPClient.getInstance(null, 0).commandToServer(toSend.toString());
+                if(TCPClient.getInstance().isConstruct()){
+                    addProThread.start();
+                }
+
             }
         });
 
         btnCancleAddProfession.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+
                 ((Stage)(btnCancleAddProfession.getScene().getWindow())).close();
             }
         });

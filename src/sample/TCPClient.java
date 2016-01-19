@@ -24,6 +24,11 @@ public class TCPClient {
     private BufferedReader stdin;
     private int port;
     private static TCPClient instance = null;
+
+    public static boolean isConstruct() {
+        return isConstruct;
+    }
+
     private static boolean isConstruct = false;
 
     //constructor for the class TCPClient

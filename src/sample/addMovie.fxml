@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="300.0" styleClass="addPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.addMovieController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="300.0" prefHeight="514.0" styleClass="addPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.addMovieController">
   <bottom>
     <HBox alignment="CENTER" maxHeight="50.0" minHeight="50.0" spacing="20.0" BorderPane.alignment="CENTER">
       <children>
@@ -69,7 +69,7 @@
         </HBox>
         <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="3">
           <children>
-            <TextField id="txtLength" maxHeight="25.0" maxWidth="190.0" minHeight="25.0" minWidth="190.0" prefHeight="25.0" prefWidth="190.0" />
+            <TextField id="txtLength" fx:id="txtYear" maxHeight="25.0" maxWidth="190.0" minHeight="25.0" minWidth="190.0" prefHeight="25.0" prefWidth="190.0" />
           </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" minWidth="90.0" GridPane.columnIndex="0" GridPane.rowIndex="7">
@@ -84,7 +84,7 @@
         </HBox>
         <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="6">
           <children>
-            <TextField id="txtLength" maxHeight="25.0" maxWidth="190.0" minHeight="25.0" minWidth="190.0" prefHeight="25.0" prefWidth="190.0" />
+            <TextField id="txtLength" fx:id="txtImage" maxHeight="25.0" maxWidth="190.0" minHeight="25.0" minWidth="190.0" prefHeight="25.0" prefWidth="190.0" />
           </children>
         </HBox>
         <HBox alignment="CENTER_LEFT" minWidth="90.0" GridPane.columnIndex="0" GridPane.rowIndex="6">
@@ -99,7 +99,7 @@
         </HBox>
         <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="5">
           <children>
-            <TextField id="txtLength" maxHeight="25.0" maxWidth="190.0" minHeight="25.0" minWidth="190.0" prefHeight="25.0" prefWidth="190.0" />
+            <TextField id="txtLength" fx:id="txtDescription" maxHeight="25.0" maxWidth="190.0" minHeight="25.0" minWidth="190.0" prefHeight="25.0" prefWidth="190.0" />
           </children>
         </HBox>
       </children>

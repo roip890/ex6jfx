@@ -25,7 +25,7 @@ public class addMovieController {
     @FXML
     TextField txtLength;
     @FXML
-    TextField txtMovieDescription;
+    TextField txtDescription;
     @FXML
     TextField txtYear;
     @FXML
@@ -52,7 +52,7 @@ public class addMovieController {
             public void run() {
                 String com = "1 " + txtCode.getText() + " " + txtMovieName.getText() +" " + txtLength.getText() +
                         " " + txtYear.getText() + " " + String.valueOf(sliderRating.getValue()) +
-                        " " + txtImage.getText() + " " + txtMovieDescription.getText();
+                        " " + txtImage.getText() + " " + txtDescription.getText();
                 String result = TCPClient.getInstance().commandToServer(com);
                 System.out.println(result);
                 String com2 ="";

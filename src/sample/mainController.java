@@ -222,6 +222,8 @@ public class mainController {
             }
         });
 
+
+
         miAllMovie.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

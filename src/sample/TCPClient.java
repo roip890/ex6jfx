@@ -27,7 +27,7 @@ public class TCPClient {
     private static boolean isConstruct = false;
 
     //constructor for the class TCPClient
-    private TCPClient(String ip,int port){
+        private TCPClient(String ip,int port){
         this.port = port;
         try{
             this.socket = new Socket(ip, port);
@@ -79,7 +79,13 @@ public class TCPClient {
         this.out.println(com);
         try {
             while (in.ready() && ((cur = in.readLine()) != null) ) {
-                result.append(cur.toString());
+                if (cur.toString().equals("~~-/START/-~~")) {
+                    continue;
+                } else if (cur.toString().equals("~~-/END/-~~")){
+                    break;
+                } else {
+                    result.append(cur.toString());
+                }
             }
         }catch (IOException e){
             e.printStackTrace();

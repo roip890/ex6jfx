@@ -28,27 +28,6 @@ public class mainController {
         return client;
     }
 
-
-    /*
-    class MyThread extends Thread {
-        @Override
-        public void run() {
-            System.out.print("before");
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-
-            }
-            System.out.print("after");
-
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    btnLogin.setText("Done");
-                }
-            });
-        }
-    }*/
     @FXML
     ImageView imgLogo;
 
@@ -136,7 +115,6 @@ public class mainController {
 
 
 // handle exception
-
         imgLogo.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -158,12 +136,21 @@ public class mainController {
                     commandToSend.append("7 ");
                 } else if (searchOpt.equals(searchProfessionalsByMovie.getText())) {
                     commandToSend.append("6 ");
+                } else {
+                    errorMsg msg = new errorMsg("Error!", "Please select an option.");
+                    msg.show();
+                    return;
                 }
                 String id = mainTextField.getText();
+                if (id.length() == 0) {
+                    errorMsg msg = new errorMsg("Error!", "Please insert an id.");
+                    msg.show();
+                    return;
+                }
                 commandToSend.append(id);
                 try {
                     String answer = TCPClient.getInstance().commandToServer(commandToSend.toString());
-                    ArrayList<String> list = new ArrayList<String>(Arrays.asList(answer.split("~~-/SEPARATOR/-~~")));
+                    ArrayList<String> list = new ArrayList<String>(Arrays.asList(answer.split("~~-/SEPARATOR/-~~\n")));
                     if (searchOpt.equals(searchMoviesByProfessional.getText())) {
                         showProfessionals(list);
                     } else if (searchOpt.equals(searchMovieById.getText())) {
@@ -246,7 +233,7 @@ public class mainController {
             public void handle(ActionEvent event) {
                 try {
                     String answer = TCPClient.getInstance().commandToServer("13");
-                    ArrayList<String> moviesList = new ArrayList<String>(Arrays.asList(answer.split("~~-/SEPARATOR/-~~")));
+                    ArrayList<String> moviesList = new ArrayList<String>(Arrays.asList(answer.split("~~-/SEPARATOR/-~~\n")));
                     showMovies(moviesList);
                 } catch (Exception e) {
                     errorMsg err = new errorMsg("Error!", "You are not connected.\nPlease connect to the server!");
@@ -260,7 +247,7 @@ public class mainController {
             public void handle(ActionEvent event) {
                 try {
                     String answer = TCPClient.getInstance().commandToServer("14");
-                    ArrayList<String> professionalsList = new ArrayList<String>(Arrays.asList(answer.split("~~-/SEPARATOR/-~~")));
+                    ArrayList<String> professionalsList = new ArrayList<String>(Arrays.asList(answer.split("~~-/SEPARATOR/-~~\n")));
                     showProfessionals(professionalsList);
                 } catch (Exception e) {
                 errorMsg err = new errorMsg("Error!", "You are not connected.\nPlease connect to the server!");

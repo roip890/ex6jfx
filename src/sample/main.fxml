@@ -42,8 +42,8 @@
                      <contextMenu>
                         <ContextMenu>
                           <items>
-                            <MenuItem mnemonicParsing="false" text="Unspecified Action" />
-                              <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+                            <MenuItem fx:id="miRemoveMovie" mnemonicParsing="false" text="Remove movie" />
+                              <MenuItem fx:id="miRemoveProfessional" mnemonicParsing="false" text="Remove professional" />
                           </items>
                         </ContextMenu>
                      </contextMenu></Button>
@@ -74,7 +74,7 @@
                 <ContextMenu>
                   <items>
                     <MenuItem fx:id="miAllMovie" mnemonicParsing="false" text="All movies" />
-                    <MenuItem fx:id="miAllProfessional" mnemonicParsing="false" text="Professional" />
+                    <MenuItem fx:id="miAllProfessional" mnemonicParsing="false" text="All professionals" />
                   </items>
                 </ContextMenu>
               </contextMenu>

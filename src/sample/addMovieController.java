@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.lang.reflect.Array;
@@ -28,6 +29,8 @@ public class addMovieController {
     @FXML
     TextField txtYear;
     @FXML
+    TextField txtImage;
+    @FXML
     Button btnAddMovie;
     @FXML
     Slider sliderRating;
@@ -49,7 +52,7 @@ public class addMovieController {
             public void run() {
                 String com = "1 " + txtCode.getText() + " " + txtMovieName.getText() +" " + txtLength.getText() +
                         " " + txtYear.getText() + " " + String.valueOf(sliderRating.getValue()) +
-                        " " + txtMovieDescription.getText();
+                        " " + txtImage.getText() + " " + txtMovieDescription.getText();
                 String result = TCPClient.getInstance().commandToServer(com);
                 System.out.println(result);
                 String com2 ="";

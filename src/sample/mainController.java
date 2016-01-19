@@ -29,26 +29,7 @@ public class mainController {
     }
 
 
-    /*
-    class MyThread extends Thread {
-        @Override
-        public void run() {
-            System.out.print("before");
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
 
-            }
-            System.out.print("after");
-
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    btnLogin.setText("Done");
-                }
-            });
-        }
-    }*/
     @FXML
     ImageView imgLogo;
 

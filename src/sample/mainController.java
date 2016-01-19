@@ -178,7 +178,7 @@ public class mainController {
             }
         });
 
-        miRemoveMovie.setOnAction(new EventHandler<ActionEvent>() {
+      /*  miRemoveMovie.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {
@@ -200,8 +200,8 @@ public class mainController {
                 }
             }
         });
-
-        miRemoveProfessional.setOnAction(new EventHandler<ActionEvent>() {
+*/
+/*        miRemoveProfessional.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
                 try {
@@ -224,7 +224,7 @@ public class mainController {
                 }
             }
         });
-
+*/
         miAddProfessional.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

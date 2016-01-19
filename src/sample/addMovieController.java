@@ -25,6 +25,14 @@ public class addMovieController {
         sliderRating.setMax(10.0);
         sliderRating.setBlockIncrement(0.1);
 
+        Thread addMovThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });
+
+
         sliderRating.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {

@@ -4,10 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -37,7 +34,7 @@ public class addMovieController {
     @FXML
     Label lblRankNum;
     @FXML
-    TextField txtGenres;
+    TextArea txtGenres;
     @FXML
     Button btnCancelMovie;
     @FXML

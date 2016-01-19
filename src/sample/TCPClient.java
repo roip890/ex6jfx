@@ -39,8 +39,8 @@ public class TCPClient {
             this.out = new PrintWriter(socket.getOutputStream(), true);
             this.in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             this.stdin = new BufferedReader(new InputStreamReader(System.in));
-            //succesMsg msg = new succesMsg("Success", "You are connected");
-            //msg.show();
+            succesMsg msg = new succesMsg("Success", "You are connected");
+            msg.show();
             System.out.println("Connect:");
             System.out.println(this.port);
             isConstruct = true;

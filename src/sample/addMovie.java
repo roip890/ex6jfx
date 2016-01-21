@@ -12,7 +12,7 @@ import java.io.IOException;
  * Created by roi on 11/01/16.
  */
 public class addMovie {
-    public String show() {
+    public void show() {
         Stage stage = new Stage();
         Parent root = null;
         try {
@@ -26,7 +26,5 @@ public class addMovie {
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setResizable(false);
         stage.showAndWait();
-
-        return "Hello";
     }
 }

@@ -7,6 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.nio.ByteOrder;
 import java.nio.CharBuffer;
+import java.util.concurrent.Semaphore;
 
 /**
  * Created by tomericko on 14/01/16.
@@ -24,6 +25,7 @@ public class TCPClient {
     private BufferedReader stdin;
     private int port;
     private static TCPClient instance = null;
+
 
     public static boolean isConstruct() {
         return isConstruct;
@@ -48,6 +50,7 @@ public class TCPClient {
             e.printStackTrace();
             errorMsg msg = new errorMsg("Error", "Can't connect, please try again.");
             msg.show();
+            instance = null;
             isConstruct = false;
         }
 
@@ -59,16 +62,10 @@ public class TCPClient {
     }
 
     public static TCPClient getInstance(String ip,int port){
-        if(!isConstruct){
-            //lock
+        if(!isConstruct) {
             if(!isConstruct) {
-                    instance = new TCPClient(ip, port);
-                    if (!isConstruct) {
-                        instance = null;
-                    }
-
+                instance = new TCPClient(ip, port);
             }
-            //unlock
         } else {
             errorMsg msg = new errorMsg("Error", "you are already connected!");
             msg.show();
@@ -81,7 +78,7 @@ public class TCPClient {
     public String commandToServer(String com){
         StringBuilder result = new StringBuilder();
         String cur ;
-        this.out.println(com);
+        this.out.println(com + "$");
         try {
             while (in.ready() && ((cur = in.readLine()) != null) ) {
                 if (cur.toString().equals("~~-/START/-~~")) {

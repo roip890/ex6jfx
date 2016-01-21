@@ -14,22 +14,22 @@ public class MovieListRow extends ListCell<String>{
 
     @Override
     protected void updateItem(String movieItem, boolean empty) {
-    super.updateItem(movieItem,empty);
+        setItem(movieItem);
 
-    if (movieItem != null) {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("movieRow.fxml"));
-        movieRowController controller = new movieRowController(movieItem);
-        loader.setController(controller);
+        if (movieItem != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("movieRow.fxml"));
+            movieRowController controller = new movieRowController(movieItem);
+            loader.setController(controller);
 
-        Parent root = null;
-        try{
-            root = loader.load();
-        } catch (IOException E) {
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException E) {
 
+            }
+            root.getStylesheets().add(getClass().getResource("movieRow.css").toExternalForm());
+            setGraphic(root);
         }
-        root.getStylesheets().add(getClass().getResource("movieRow.css").toExternalForm());
-        setGraphic(root);
-    }
 }
 
 }

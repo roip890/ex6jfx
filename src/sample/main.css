@@ -87,11 +87,19 @@
 
 .listView {
     -fx-font-weight: bold;
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-background-color: transparent;
+    -fx-font-size: 20px;
 }
 
 .listView .cell {
     -fx-font-weight: bold;
+    -fx-text-fill: white;
     -fx-background-color: transparent;
+    -fx-font-size: 20px;
+}
+
+.btnExit {
+    -fx-image: url("file:images/exit.png");
+    -fx-background-size: cover;
 }

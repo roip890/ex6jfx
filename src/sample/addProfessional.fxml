@@ -69,7 +69,7 @@
         </HBox>
         <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="0">
           <children>
-            <MenuButton fx:id="mbtnProfession" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="150.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Choose type">
+            <MenuButton fx:id="mbtnProfession" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="150.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="150.0" text="Director">
               <items>
                 <MenuItem fx:id="proDirector" mnemonicParsing="false" text="Director" />
                 <MenuItem fx:id="proActor" mnemonicParsing="false" text="Actor" />
@@ -101,7 +101,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
-                  <TextArea maxHeight="50.0" maxWidth="190.0" minHeight="50.0" minWidth="190.0" prefHeight="50.0" prefWidth="190.0" />
+                  <TextArea fx:id="txtMoviesPro" maxHeight="50.0" maxWidth="190.0" minHeight="50.0" minWidth="190.0" prefHeight="50.0" prefWidth="190.0" />
                </children>
                <padding>
                   <Insets bottom="5.0" top="5.0" />

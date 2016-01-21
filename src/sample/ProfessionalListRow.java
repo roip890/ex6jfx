@@ -14,7 +14,6 @@ public class ProfessionalListRow extends ListCell<String> {
     @Override
     protected void updateItem(String professionalItem, boolean empty) {
         super.updateItem(professionalItem,empty);
-
         if (professionalItem != null) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("professionalRow.fxml"));
             professionalRowController controller = new professionalRowController(professionalItem);

@@ -7,9 +7,9 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox maxHeight="240.0" maxWidth="600.0" minHeight="240.0" minWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="rowPane" styleClass="rowPane" maxHeight="240.0" maxWidth="600.0" minHeight="240.0" minWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="imgMovie" fitHeight="150.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgMovie" styleClass="imgMovie" fitHeight="150.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
       <VBox maxHeight="220.0" maxWidth="410.0" minHeight="220.0" minWidth="410.0" spacing="5.0">
          <children>
             <Label fx:id="lblMovieTitle" styleClass="lblCell" text="Title" />

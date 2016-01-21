@@ -1,18 +1,14 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.ImageViewBuilder;
 import javafx.util.Callback;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -40,16 +36,17 @@ public class movieRowController {
         this.movieLength = Integer.parseInt(movieParams.get(2));
         this.movieYear = Integer.parseInt(movieParams.get(3));
         this.movieRank = Double.parseDouble(movieParams.get(4));
-
-        ArrayList<String> movieTypesList = new ArrayList<String>(Arrays.asList(movieParams.get(5).split(",")));
-        StringBuilder strBldr = new StringBuilder("");
         boolean isFirst = true;
-        for (int i = 0; i < movieTypesList.size(); ++i) {
-            if (isFirst) {
-                strBldr.append(movieTypesList.get(i));
-                isFirst = false;
-            } else {
-                strBldr.append(" | " + movieTypesList.get(i));
+        StringBuilder strBldr = new StringBuilder("");
+        if(!movieParams.get(5).equals("~~-/NO-GENRES/-~~")) {
+            ArrayList<String> movieTypesList = new ArrayList<String>(Arrays.asList(movieParams.get(5).split(",")));
+            for (int i = 0; i < movieTypesList.size(); ++i) {
+                if (isFirst) {
+                    strBldr.append(movieTypesList.get(i));
+                    isFirst = false;
+                } else {
+                    strBldr.append(" | " + movieTypesList.get(i));
+                }
             }
         }
         this.movieTypes = strBldr.toString();
@@ -118,12 +115,31 @@ public class movieRowController {
     Label lblMovieDescrioption;
 
     @FXML
-    ListView lstMovieStaff;
+    ListView<ArrayList<String>> lstMovieStaff;
+
+    class DrawImage extends Thread{
+
+        ImageView imageView;
+        String url;
+
+        DrawImage(ImageView imageView, String url) {
+            this.imageView = imageView;
+            this.url = url;
+        }
+
+        @Override
+        public void run() {
+            Image img = new Image(imgUrl);
+            imgMovie.setImage(img);
+        }
+    }
 
     @FXML
     public void initialize() {
-        Image img = new Image(this.imgUrl);
-        imgMovie.setImage(img);
+
+        System.out.println(this.movieName);
+        DrawImage drawImage = new DrawImage(this.imgMovie, this.imgUrl);
+        drawImage.start();
         lblMovieTitle.setText("#" + this.movieCode + " - " + this.movieName + "(" + this.movieYear + ")");
         lblMovieInfo.setText(this.movieLength + " min - " + this.movieTypes);
 
@@ -145,7 +161,7 @@ public class movieRowController {
         strBadString = strBldr2.toString();
         lblMovieBadStars.setText(strBadString);
 
-        lblMovieRank.setText(new Double(this.movieRank).toString());
+        lblMovieRank.setText(Double.toString(this.movieRank).format("%.1f", this.movieRank));
 
         lblMovieRankFrom.setText("/10");
 
@@ -154,13 +170,13 @@ public class movieRowController {
 
         for (ArrayList<String> staffType: this.staffTypes) {
             if (staffType.size() > 2) {
-                lstMovieStaff.getItems().add(staffType);
+                lstMovieStaff.getItems().addAll(staffType);
             }
         }
 
-        lstMovieStaff.setCellFactory(new Callback<ListView, ListCell>() {
+        lstMovieStaff.setCellFactory(new Callback<ListView<ArrayList<String>>, ListCell<ArrayList<String>>>() {
             @Override
-            public ListCell call(ListView param) {
+            public ListCell call(ListView<ArrayList<String>> param) {
                 return new MovieStaffListRow();
             }
         });

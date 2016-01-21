@@ -1,0 +1,8 @@
+.whiteFont {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.lblCell {
+    -fx-text-fill: white;
+}

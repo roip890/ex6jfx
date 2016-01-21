@@ -1,9 +1,22 @@
+.rowPane {
+    -fx-background-color: transparent;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+}
+
 .listView {
     -fx-background-color: transparent;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
 }
 
 .listView .cell {
     -fx-background-color: transparent;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
 }
 
 .goodStars {
@@ -16,4 +29,9 @@
 
 .lblCell {
     -fx-text-fill: white;
+}
+
+.imgMovie {
+    -fx-image: url("file:images/loading.gif");
+    -fx-background-size: cover;
 }

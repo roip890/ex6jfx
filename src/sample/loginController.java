@@ -1,6 +1,5 @@
 package sample;
 
-import com.sun.beans.editors.StringEditor;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;

@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.application.Platform;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -43,8 +45,6 @@ public class TCPClient {
             this.stdin = new BufferedReader(new InputStreamReader(System.in));
             succesMsg msg = new succesMsg("Success", "You are connected");
             msg.show();
-            System.out.println("Connect:");
-            System.out.println(this.port);
             isConstruct = true;
         }catch (IOException e){
             e.printStackTrace();
@@ -75,57 +75,29 @@ public class TCPClient {
     }
 
 
+
+
     public String commandToServer(String com){
         StringBuilder result = new StringBuilder();
         String cur ;
+
         this.out.println(com + "$");
         try {
-            while (in.ready() && ((cur = in.readLine()) != null) ) {
+            boolean isFirst = true;
+            while ((cur = in.readLine()) != null) {
                 if (cur.toString().equals("~~-/START/-~~")) {
                     continue;
                 } else if (cur.toString().equals("~~-/END/-~~")){
                     break;
                 } else {
-                    result.append(cur.toString());
+                        result.append(cur.toString());
                 }
             }
         }catch (IOException e){
             e.printStackTrace();
         }
-
         return result.toString();
 
     }
 
-    public Socket getSocket() {
-        return socket;
-    }
-
-    public void setSocket(Socket socket) {
-        this.socket = socket;
-    }
-
-    public PrintWriter getOut() {
-        return out;
-    }
-
-    public void setOut(PrintWriter out) {
-        this.out = out;
-    }
-
-    public BufferedReader getIn() {
-        return in;
-    }
-
-    public void setIn(BufferedReader in) {
-        this.in = in;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
-    }
 }

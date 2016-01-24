@@ -66,28 +66,6 @@ public class addProfessionalController {
     @FXML
     TextArea txtMoviesPro;
 
-    class SendToServer extends Thread {
-        String command;
-        String message = null;
-        SendToServer(String command) {
-            this.command = command;
-        }
-
-        String getMessage() {
-            return this.message;
-        }
-
-        @Override
-        public void run() {
-            synchronized (SendToServer.class) {
-                try {
-                    this.message = TCPClient.getInstance().commandToServer(command);
-                } catch (Exception e) {
-                    Platform.runLater(new errorMsg("Error!", "Can't communicate server.\nPlease connect to server"));
-                }
-            }
-        }
-    }
 
     @FXML
     public void initialize() {

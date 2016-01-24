@@ -23,7 +23,7 @@ public class movieStaffRowController {
                 strBldr.append(staffType.get(i));
                 isFirst = false;
             } else {
-                strBldr.append("," + staffType.get(i));
+                strBldr.append(", " + staffType.get(i));
             }
         }
         this.names = strBldr.toString();

@@ -32,6 +32,6 @@
 }
 
 .imgMovie {
-    -fx-image: url("file:images/loading.gif");
+    -fx-image: url(loading.gif);
     -fx-background-size: cover;
 }

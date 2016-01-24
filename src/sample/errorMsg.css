@@ -1,10 +1,10 @@
 .errorPane{
-    -fx-background-image: url("file:images/errorBg.jpg");
+    -fx-background-image: url(errorBg.jpg);
     -fx-background-size: cover;
 }
 
 .imgError{
-    -fx-image: url("file:images/imgError.png");
+    -fx-image: url(imgError.png);
     -fx-background-size: cover;
 }
 

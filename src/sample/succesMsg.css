@@ -1,10 +1,10 @@
 .successPane{
-    -fx-background-image: url("file:images/successBg.jpg");
+    -fx-background-image: url(successBg.jpg);
     -fx-background-size: cover;
 }
 
 .imgSuccess{
-    -fx-image: url("file:images/imgSuccess.png");
+    -fx-image: url(imgSuccess.png);
     -fx-background-size: cover;
 }
 

@@ -1,5 +1,5 @@
 .loginFrame {
-    -fx-background-image: url("file:images/connectionBg.jpg");
+    -fx-background-image: url(connectionBg.jpg);
     -fx-background-size: cover;
 }
 

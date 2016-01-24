@@ -1,5 +1,5 @@
 .addPane{
-    -fx-background-image: url("file:images/addBg.png");
+    -fx-background-image: url(addBg.png);
     -fx-background-size: cover;
 }
 

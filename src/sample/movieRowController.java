@@ -27,7 +27,7 @@ public class movieRowController {
     ArrayList<ArrayList<String>> staffTypes = new ArrayList<ArrayList<String>>();
 
     public movieRowController(String movie) {
-        ArrayList<String> movieInfoAndStaff = new ArrayList<String>(Arrays.asList(movie.split("\n")));
+        ArrayList<String> movieInfoAndStaff = new ArrayList<String>(Arrays.asList(movie.split("~~-/STAFF_SEPARATOR/-~~")));
 
         ArrayList<String> movieParams = new ArrayList<String>(Arrays.asList(movieInfoAndStaff.get(0).split(" ")));
 
@@ -79,12 +79,12 @@ public class movieRowController {
         producers.add("3");
         producers.add("Producers:");
         this.staffTypes.add(producers);
-        String[] professionalInfo;
+        ArrayList<String> professionalInfo;
         for (int i = 1; i < movieInfoAndStaff.size(); ++i) {
-            professionalInfo = movieInfoAndStaff.get(i).split(" ");
+            professionalInfo = new ArrayList<String>(Arrays.asList(movieInfoAndStaff.get(i).split(" ")));
             for (int j = 0; j < this.staffTypes.size(); ++j) {
-                if (professionalInfo[0].equals(this.staffTypes.get(j).get(0))) {
-                    this.staffTypes.get(j).add(professionalInfo[1] + " " + professionalInfo[2]);
+                if (professionalInfo.get(0).equals(this.staffTypes.get(j).get(0))) {
+                        this.staffTypes.get(j).add(professionalInfo.get(1));
                     break;
                 }
             }
@@ -117,7 +117,7 @@ public class movieRowController {
     @FXML
     ListView<ArrayList<String>> lstMovieStaff;
 
-    class DrawImage extends Thread{
+    class DrawImage extends Thread {
 
         ImageView imageView;
         String url;
@@ -137,7 +137,6 @@ public class movieRowController {
     @FXML
     public void initialize() {
 
-        System.out.println(this.movieName);
         DrawImage drawImage = new DrawImage(this.imgMovie, this.imgUrl);
         drawImage.start();
         lblMovieTitle.setText("#" + this.movieCode + " - " + this.movieName + "(" + this.movieYear + ")");
@@ -170,7 +169,7 @@ public class movieRowController {
 
         for (ArrayList<String> staffType: this.staffTypes) {
             if (staffType.size() > 2) {
-                lstMovieStaff.getItems().addAll(staffType);
+                lstMovieStaff.getItems().add(staffType);
             }
         }
 

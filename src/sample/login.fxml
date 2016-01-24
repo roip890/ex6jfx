@@ -22,7 +22,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <TextField fx:id="txtPort" text="5555" />
+                  <TextField fx:id="txtPort" text="5557" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1">

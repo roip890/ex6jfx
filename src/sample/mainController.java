@@ -136,6 +136,7 @@ public class mainController {
                 String id = mainTextField.getText();
                 if (id.length() == 0) {
                     errorMsg msg = new errorMsg("Error!", "Please insert an id.");
+                    mainTextField.setStyle("-fx-background-color: #FF0000;");
                     msg.show();
                     return;
                 }
@@ -171,8 +172,11 @@ public class mainController {
                 }
                 if (message.contains("Failure")) {
                     errorMsg msg = new errorMsg("Failure", type + " not found");
+                    mainTextField.setStyle("-fx-background-color: #FF0000;");
                     msg.show();
                 } else {
+                    mainTextField.setStyle("-fx-background-color: linear-gradient(#CD853F, #996515),"+
+                            "radial-gradient(center 50% -40%, radius 200%, #FFD700 45%, #DAA520 50%);");
                     ArrayList<String> list = new ArrayList<String>(Arrays.asList(message.split("~~-/SEPARATOR/-~~")));
                     if (searchOpt.equals(searchMoviesByProfessional.getText())) {
                         showMovies(list);
@@ -205,9 +209,12 @@ public class mainController {
                 }
                 if (message.contains("Success")) {
                     succesMsg msg = new succesMsg("Success!", "Movie removed");
+                    mainTextField.setStyle("-fx-background-color: linear-gradient(#CD853F, #996515),"+
+                            "radial-gradient(center 50% -40%, radius 200%, #FFD700 45%, #DAA520 50%);");
                     msg.show();
                 } else {
                     errorMsg msg = new errorMsg("Error!", "Can't remove movie");
+                    mainTextField.setStyle("-fx-background-color: #FF4c4c;");
                     msg.show();
                 }
             }

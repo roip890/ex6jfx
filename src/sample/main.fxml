@@ -7,39 +7,51 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="mainPane" maxHeight="400.0" maxWidth="600.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="mainPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.mainController">
+<BorderPane fx:id="mainPane" maxHeight="400.0" maxWidth="600.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="mainPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="sample.mainController">
+  <bottom>
+    <ImageView fx:id="btnExit" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="btnExit" BorderPane.alignment="CENTER_RIGHT" />
+  </bottom>
+  <center>
+    <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <children>
+        <ListView fx:id="lstMovies" prefHeight="200.0" prefWidth="200.0" styleClass="listView" />
+        <ListView fx:id="lstProfessionals" prefHeight="200.0" prefWidth="200.0" styleClass="listView" />
+      </children>
+    </StackPane>
+  </center>
   <top>
     <BorderPane prefHeight="60.0" prefWidth="600.0" BorderPane.alignment="CENTER">
       <left>
         <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="356.0" spacing="10.0" BorderPane.alignment="CENTER">
           <children>
             <ImageView fx:id="imgLogo" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="imgLogo" />
-            <TextField fx:id="mainTextField" minHeight="30.0" minWidth="100.0" styleClass="txtBar">
+            <TextField fx:id="mainTextField" minHeight="30.0" minWidth="100.0" promptText="Enter id..." styleClass="txtBar">
               <HBox.margin>
                 <Insets />
               </HBox.margin>
             </TextField>
             <MenuButton fx:id="btnMnuSearch" minHeight="30.0" minWidth="240.0" mnemonicParsing="false" styleClass="btnBar" text="Select option">
               <items>
-                <MenuItem fx:id="searchMoviesByProfessional" mnemonicParsing="false" styleClass="menuItemBar" text="Movies by professional id" />
-                <MenuItem fx:id="searchMovieById" mnemonicParsing="false" styleClass="menuItemBar" text="Movie by id" />
-                <MenuItem fx:id="searchProfessionalsByMovie" mnemonicParsing="false" styleClass="menuItemBar" text="Professionals by movie" />
+                <MenuItem mnemonicParsing="false" styleClass="menuItemBar" text="Movies by professional id" fx:id="searchMoviesByProfessional" />
+                <MenuItem mnemonicParsing="false" styleClass="menuItemBar" text="Movie by id" fx:id="searchMovieById" />
+                <MenuItem mnemonicParsing="false" styleClass="menuItemBar" text="Professionals by movie" fx:id="searchProfessionalsByMovie" />
               </items>
             </MenuButton>
             <Button fx:id="btnSearch" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" styleClass="btnBar">
-                     <graphic>
-                        <ImageView fx:id="imgSearch" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="imgSearch" />
-                     </graphic>
+              <graphic>
+                <ImageView fx:id="imgSearch" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" styleClass="imgSearch" />
+              </graphic>
             </Button>
             <Button fx:id="btnRemove" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" styleClass="btnBar" text="-">
-                     <contextMenu>
-                        <ContextMenu>
-                          <items>
-                            <MenuItem fx:id="miRemoveMovie" mnemonicParsing="false" text="Remove movie" />
-                              <MenuItem fx:id="miRemoveProfessional" mnemonicParsing="false" text="Remove professional" />
-                          </items>
-                        </ContextMenu>
-                     </contextMenu></Button>
+              <contextMenu>
+                <ContextMenu>
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Remove movie" fx:id="miRemoveMovie" />
+                    <MenuItem mnemonicParsing="false" text="Remove professional" fx:id="miRemoveProfessional" />
+                  </items>
+                </ContextMenu>
+              </contextMenu>
+            </Button>
           </children>
           <padding>
             <Insets left="10.0" />
@@ -56,8 +68,8 @@
               <contextMenu>
                 <ContextMenu>
                   <items>
-                    <MenuItem fx:id="miAddMovie" mnemonicParsing="false" text="Add movie" />
-                    <MenuItem fx:id="miAddProfessional" mnemonicParsing="false" text="Add professional" />
+                    <MenuItem mnemonicParsing="false" text="Add movie" fx:id="miAddMovie" />
+                    <MenuItem mnemonicParsing="false" text="Add professional" fx:id="miAddProfessional" />
                   </items>
                 </ContextMenu>
               </contextMenu>
@@ -66,8 +78,8 @@
               <contextMenu>
                 <ContextMenu>
                   <items>
-                    <MenuItem fx:id="miAllMovie" mnemonicParsing="false" text="All movies" />
-                    <MenuItem fx:id="miAllProfessional" mnemonicParsing="false" text="All professionals" />
+                    <MenuItem mnemonicParsing="false" text="All movies" fx:id="miAllMovie" />
+                    <MenuItem mnemonicParsing="false" text="All professionals" fx:id="miAllProfessional" />
                   </items>
                 </ContextMenu>
               </contextMenu>
@@ -83,15 +95,4 @@
       </right>
     </BorderPane>
   </top>
-   <bottom>
-      <ImageView fx:id="btnExit" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" styleClass="btnExit" BorderPane.alignment="CENTER_RIGHT" />
-   </bottom>
-   <center>
-      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-          <ListView fx:id="lstMovies" prefHeight="200.0" prefWidth="200.0" styleClass="listView" />
-            <ListView fx:id="lstProfessionals" prefHeight="200.0" prefWidth="200.0" styleClass="listView" />
-         </children>
-      </StackPane>
-   </center>
 </BorderPane>

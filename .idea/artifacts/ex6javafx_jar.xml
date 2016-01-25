@@ -3,9 +3,6 @@
     <output-path>$PROJECT_DIR$/out/artifacts/ex6javafx_jar</output-path>
     <root id="archive" name="ex6javafx.jar">
       <element id="module-output" name="ex6javafx" />
-      <element id="directory" name="images">
-        <element id="dir-copy" path="$PROJECT_DIR$/images" />
-      </element>
     </root>
   </artifact>
 </component>
